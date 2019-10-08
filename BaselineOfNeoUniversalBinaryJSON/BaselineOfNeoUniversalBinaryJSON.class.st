@@ -12,6 +12,7 @@ Class {
 
 { #category : #baselines }
 BaselineOfNeoUniversalBinaryJSON >> baselineOf: spec [
+	<baseline>
 	spec for: #common do: [ 
 		spec package: 'Neo-Universal-Binary-JSON'.
 		spec package: 'Neo-Universal-Binary-JSON-Tests' with: [ spec requires: #('Neo-Universal-Binary-JSON') ].
