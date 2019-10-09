@@ -26,7 +26,8 @@ Class {
 	#name : #NeoUBJSONWriter,
 	#superclass : #Object,
 	#instVars : [
-		'stream'
+		'stream',
+		'byteStream'
 	],
 	#category : #'Neo-Universal-Binary-JSON'
 }
@@ -177,12 +178,18 @@ NeoUBJSONWriter >> writeString: string [
 
 { #category : #writing }
 NeoUBJSONWriter >> writeStringData: string [
-	self writeInteger: (ZnUTF8Encoder default encodedByteCountForString: string).
+	| byteSize |
+	byteStream ifNil: [ byteStream := (ByteArray new: 32) writeStream ].
+	byteStream reset.
 	ZnUTF8Encoder default
 		next: string size 
 		putAll: string 
 		startingAt: 1 
-		toStream: stream
+		toStream: byteStream.
+	byteSize := byteStream position.	
+	self writeInteger: byteSize.
+	stream next: byteSize putAll: byteStream originalContents startingAt: 1
+
 ]
 
 { #category : #writing }
