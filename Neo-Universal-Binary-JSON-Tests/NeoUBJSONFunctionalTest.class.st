@@ -9,10 +9,17 @@ NeoUBJSONFunctionalTest class >> defaultTimeLimit [
 	^(32 * 2 * 5) seconds
 ]
 
+{ #category : #accessing }
+NeoUBJSONFunctionalTest >> baseUrl [
+	"https://raw.githubusercontent.com/nlohmann/json_test_data/master/"
+	
+	^ 'https://raw.githubusercontent.com/nlohmann/json_test_data/master/'
+]
+
 { #category : #tests }
 NeoUBJSONFunctionalTest >> testFunctional1 [
 	| baseUrl |
-	baseUrl := 'https://github.com/nlohmann/json/raw/develop/test/data/json.org/{1}.{2}'.
+	baseUrl := self baseUrl , 'json.org/{1}.{2}'.
 	1 to: 5 do: [ :each | | jsonString json ubjsonBytes ubjson |
 		jsonString := (baseUrl format: { each. 'json' }) asUrl retrieveContents.
 		json := STONJSON fromString: jsonString.
@@ -24,7 +31,7 @@ NeoUBJSONFunctionalTest >> testFunctional1 [
 { #category : #tests }
 NeoUBJSONFunctionalTest >> testFunctional2 [
 	| baseUrl jsonString json ubjsonBytes ubjson |
-	baseUrl := 'https://github.com/nlohmann/json/raw/develop/test/data/json_testsuite/sample'.
+	baseUrl := self baseUrl , 'json_testsuite/sample'.
 	jsonString := (baseUrl, '.json') asUrl retrieveContents.
 	json := STONJSON fromString: jsonString.
 	ubjsonBytes := ZnClient new url: (baseUrl, '.json.ubjson'); beBinary; get.
@@ -35,7 +42,7 @@ NeoUBJSONFunctionalTest >> testFunctional2 [
 { #category : #tests }
 NeoUBJSONFunctionalTest >> testFunctional3 [
 	| baseUrl |
-	baseUrl := 'https://github.com/nlohmann/json/raw/develop/test/data/json_tests/pass{1}.{2}'.
+	baseUrl := self baseUrl , 'json_tests/pass{1}.{2}'.
 	1 to: 3 do: [ :each | | jsonString json ubjsonBytes ubjson |
 		jsonString := (baseUrl format: { each. 'json' }) asUrl retrieveContents.
 		json := STONJSON fromString: jsonString.
@@ -48,7 +55,7 @@ NeoUBJSONFunctionalTest >> testFunctional3 [
 { #category : #tests }
 NeoUBJSONFunctionalTest >> testFunctional4 [
 	| baseUrl jsonString json ubjsonBytes ubjson |
-	baseUrl := 'https://github.com/nlohmann/json/raw/develop/test/data/json_nlohmann_tests/all_unicode'.
+	baseUrl := self baseUrl , 'json_nlohmann_tests/all_unicode'.
 	jsonString := (baseUrl, '.json') asUrl retrieveContents.
 	json := STONJSON fromString: jsonString.
 	ubjsonBytes := ZnClient new url: (baseUrl, '.json.ubjson'); beBinary; get.
@@ -63,7 +70,7 @@ NeoUBJSONFunctionalTest >> testFunctional4 [
 { #category : #tests }
 NeoUBJSONFunctionalTest >> testFunctional5 [
 	| baseUrl |
-	baseUrl := 'https://github.com/nlohmann/json/raw/develop/test/data/json_roundtrip/roundtrip{1}.{2}'.
+	baseUrl := self baseUrl , 'json_roundtrip/roundtrip{1}.{2}'.
 	1 to: 32 do: [ :each | | n jsonString json ubjsonBytes ubjson |
 		n := each printStringLength: 2 padded: true.
 		jsonString := (baseUrl format: { n. 'json' }) asUrl retrieveContents.
