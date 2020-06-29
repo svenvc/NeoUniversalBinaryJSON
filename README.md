@@ -36,6 +36,6 @@ You can also load using the following expression:
  
 ### Note about Pharo 7 Compatibility
 
-For Pharo 7, you need to change the method NeoUBJSONWriter>>#writeInteger:ofSize:signed:bigEndian: so that it sends #digitAt: instead of #byteAt: 
+For Pharo 7, prior to 7.0.5, you need to change the method NeoUBJSONWriter>>#writeInteger:ofSize:signed:bigEndian: so that it sends #digitAt: instead of #byteAt: 
 
 Written and supported by Sven Van Caekenberghe. MIT Licensed.
