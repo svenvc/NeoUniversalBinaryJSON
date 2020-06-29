@@ -1,7 +1,7 @@
 # NeoUniversalBinaryJSON
 An implementation of Universal Binary JSON (UBJSON) for Pharo.
 
-[![Build Status](https://travis-ci.org/svenvc/NeoUniveralBinaryJSON.svg?branch=master)](https://travis-ci.org/svenvc/NeoUniversalBinaryJSON)
+[![Build Status](https://travis-ci.org/svenvc/NeoUniversalBinaryJSON.svg?branch=master)](https://travis-ci.org/svenvc/NeoUniversalBinaryJSON)
 
 Universal Binary JSON (UBJSON) is a computer data interchange format. It is a binary form directly imitating JSON, but requiring fewer bytes of data. It aims to achieve the generality of JSON, combined with being easier and more efficient to process than JSON.
 
